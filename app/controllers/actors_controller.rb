@@ -2,10 +2,10 @@ class ActorsController < ApplicationController
   def show
     @actor = Actor.find(params[:id])
 
-    movies = Movie.joins(:actors_movies).where('actor_id = ?', @actor.id)
+    movies = Movie.movies_by_given_actor(@actor.id)
 
     fellow_stars = movies.map do |movie|
-      Actor.joins(:actors_movies).where('movie_id = ?', movie.id)
+      Actor.actors_for_given_movie(movie.id)
     end.flatten.uniq
 
     fellow_stars.shift

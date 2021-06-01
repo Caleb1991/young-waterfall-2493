@@ -22,10 +22,19 @@ RSpec.describe Movie do
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_2.id, movie_id: @movie_3.id)
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_3.id, movie_id: @movie_3.id)
   end
-  
+
   describe 'relationships' do
     it {should belong_to :studio}
     it {should have_many(:actors_movies)}
     it {should have_many(:actors).through(:actors_movies)}
+  end
+
+  describe 'Class Methods' do
+
+    describe '#movies_by_given_actor' do
+      it 'returns all movies actor has acted in' do
+        expect(Movie.movies_by_given_actor(@actor_1.id).first.title).to eq('Toy Story')
+      end
+    end
   end
 end

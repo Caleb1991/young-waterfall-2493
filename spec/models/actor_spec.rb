@@ -43,4 +43,4 @@ RSpec.describe Actor do
       end
     end
   end
-end 
+end
