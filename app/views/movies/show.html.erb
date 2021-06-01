@@ -6,3 +6,16 @@
 <% @actors.each do |actor| %>
 <p><%= actor.name %></p>
 <% end %>
+
+<p>Add an Actor to This Movie: </p>
+<%= form_with url: "/movies/#{@movie.id}", method: :get, local: true do |f| %>
+<%= f.label :name %>
+<%= f.text_field :name %>
+<%= f.submit 'Search for Actor' %>
+<% end %>
+
+<% if @search_results != nil %>
+<% @search_results.each do |actor| %>
+<p><%= actor.name %></p>
+<% end %>
+<% end %>
