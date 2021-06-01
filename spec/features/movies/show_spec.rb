@@ -1,6 +1,6 @@
 require 'rails_helper'
 
-RSpec.describe 'Studio Show Page' do
+RSpec.describe 'Movie Show Page' do
   before :each do
     @studio_1 = Studio.create!(name: 'Universal Studios', location: 'Hollywood')
     @studio_2 = Studio.create!(name: 'Disney', location: 'Where Dreams go to Die')
@@ -22,38 +22,23 @@ RSpec.describe 'Studio Show Page' do
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_2.id, movie_id: @movie_3.id)
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_3.id, movie_id: @movie_3.id)
 
-    visit "/studios/#{@studio_2.id}"
+    visit "/movies/#{@movie_3.id}"
   end
 
-  it 'shows the studios name and location' do
-    expect(page).to have_content(@studio_2.name)
-    expect(page).to have_content(@studio_2.location)
-    expect(page).to_not have_content(@studio_1.name)
-    expect(page).to_not have_content(@studio_1.location)
+#     As a user,
+# When I visit a movie's show page.
+# I see the movie's title, creation year, and genre,
+# and I see all of the actors in the movie
+
+  it 'Shows the movies attributes' do
+    expect(page).to have_content(@movie_3.title)
+    expect(page).to have_content(@movie_3.creation_year)
+    expect(page).to have_content(@movie_3.genre)
   end
 
-  it 'shows the titles for all its movies' do
-    expect(page).to have_content(@movie_1.title)
-    expect(page).to have_content(@movie_2.title)
-    expect(page).to_not have_content(@movie_3.title)
-  end
-
-  it 'shows actors that have acted in any of their movies' do
-    expect(page).to have_content(@actor_1.name)
+  it 'Shows all the actors for the given movie' do
     expect(page).to have_content(@actor_2.name)
-    expect(page).to_not have_content(@actor_4.name)
-  end
-
-  it 'doesnt show the same actor twice' do
-  end
-
-  it 'orders actors by oldest first' do
-    expect(@actor_2.name).to appear_before(@actor_1.name)
-  end
-
-  it 'only shows actors that are currently working' do
-    expect(page).to have_content(@actor_1.name)
-    expect(page).to have_content(@actor_2.name)
-    expect(page).to_not have_content(@actor_3.name)
+    expect(page).to have_content(@actor_3.name)
+    expect(page).to_not have_content(@actor_1.name)
   end
 end
