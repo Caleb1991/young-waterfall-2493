@@ -23,6 +23,12 @@ RSpec.describe Movie do
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_3.id, movie_id: @movie_3.id)
   end
 
+  describe 'validations' do
+    it {should validate_presence_of(:title)}
+    it {should validate_presence_of(:creation_year)}
+    it {should validate_presence_of(:genre)}
+  end 
+
   describe 'relationships' do
     it {should belong_to :studio}
     it {should have_many(:actors_movies)}

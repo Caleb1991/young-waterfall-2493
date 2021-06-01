@@ -23,6 +23,11 @@ RSpec.describe Actor do
     @actor_movies_1 = ActorsMovie.create!(actor_id: @actor_3.id, movie_id: @movie_3.id)
   end
 
+  describe 'validations' do
+    it {should validate_presence_of(:name)}
+    it {should validate_presence_of(:age)}
+  end
+
   describe 'relationships' do
     it {should have_many(:actors_movies)}
     it {should have_many(:movies).through(:actors_movies)}

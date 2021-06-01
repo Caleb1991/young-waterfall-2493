@@ -1,4 +1,8 @@
 class Actor < ApplicationRecord
+  validates_presence_of :name
+  validates_presence_of :age
+  validates :currently_working, inclusion: [true, false]
+
   has_many :actors_movies
   has_many :movies, through: :actors_movies
 
