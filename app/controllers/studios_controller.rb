@@ -3,5 +3,7 @@ class StudiosController < ApplicationController
     @studio = Studio.find(params[:id])
 
     @movies = @studio.movies
+
+    @actors = Actor.joins(:movies).where('')
   end
 end
