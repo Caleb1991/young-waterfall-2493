@@ -32,5 +32,12 @@ RSpec.describe 'Actor Show Page' do
   it 'shows the actors name and age' do
     expect(page).to have_content(@actor_1.name)
     expect(page).to have_content(@actor_1.age)
+    expect(page).to_not have_content(@actor_4.name)
+    expect(page).to_not have_content(@actor_4.age)
+  end
+
+  it 'shows all of the actors this given actor has worked with' do
+    expect(page).to have_content(@actor_2.name)
+    expect(page).to have_content(@actor_3.name)
   end
 end
