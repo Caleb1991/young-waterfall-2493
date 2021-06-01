@@ -37,14 +37,6 @@ RSpec.describe 'Movie Show Page' do
     expect(page).to_not have_content(@actor_1.name)
   end
 
-#   As a user,
-# When I visit a movie show page,
-# And I see a form to add an actor to this movie
-# When I fill in the form with the name of an actor that exists in the database
-# And I click submit
-# Then I am redirected back to that movie's show page
-# And I see the actor's name is now listed
-
   it 'has a form to add an actor' do
     expect(page).to have_content('Name')
   end
