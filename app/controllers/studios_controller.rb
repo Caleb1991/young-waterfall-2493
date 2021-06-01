@@ -4,6 +4,8 @@ class StudiosController < ApplicationController
 
     @movies = @studio.movies
 
-    @actors = Actor.joins(:movies).where('')
+    studio_actors = Actor.joins(:movies).where('studio_id = ?', @studio.id).distinct.order(age: :desc)
+
+    @actors = studio_actors.where('currently_working = ?', true)
   end
 end
