@@ -4,8 +4,12 @@ class ActorsController < ApplicationController
 
     movies = Movie.joins(:actors_movies).where('actor_id = ?', @actor.id)
 
-    @co_stars = movies.map do |movie|
+    fellow_stars = movies.map do |movie|
       Actor.joins(:actors_movies).where('movie_id = ?', movie.id)
     end.flatten.uniq
+
+    fellow_stars.shift
+
+    @co_stars = fellow_stars
   end
 end

@@ -24,10 +24,6 @@ RSpec.describe 'Actor Show Page' do
 
     visit "/actors/#{@actor_1.id}"
   end
-#   As a user,
-# When I visit an actor's show page
-# I see that actors name and age
-# And I see a unique list of all of the actors this particular actor has worked with.
 
   it 'shows the actors name and age' do
     expect(page).to have_content(@actor_1.name)
